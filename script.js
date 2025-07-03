@@ -1,6 +1,11 @@
-function showMore() {
-  const msg = document.getElementById('extraMessage');
-  msg.style.display = 'block';
+function showFullMessage() {
+  document.querySelector('.container').style.display = 'none';
+  document.getElementById('fullMessageContainer').style.display = 'block';
+}
+
+function goBack() {
+  document.getElementById('fullMessageContainer').style.display = 'none';
+  document.querySelector('.container').style.display = 'block';
 }
 
 // Floating heart animation
@@ -12,18 +17,15 @@ function createHeart() {
   heart.classList.add('heart-float');
   heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
 
-  // Random position
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.fontSize = (Math.random() * 20 + 20) + "px";
   heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
 
   heartsContainer.appendChild(heart);
 
-  // Remove after animation
   setTimeout(() => {
     heart.remove();
   }, 7000);
 }
 
-// Generate lots of hearts repeatedly
 setInterval(createHeart, 300);
