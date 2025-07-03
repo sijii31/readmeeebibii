@@ -1,4 +1,4 @@
-body {
+  body {
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
@@ -10,7 +10,7 @@ body {
   display: block;
 }
 
-
+/* Main container */
 .container {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(15px);
@@ -22,9 +22,87 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   position: relative;
   z-index: 2;
+}
 
+/* Full message container */
+.full-message-container {
+  display: none;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  z-index: 3;
+  position: relative;
+  font-size: 1.1em;
+  color: #333;
+}
 
+.full-message-container h2 {
+  color: #d6336c;
+  margin-bottom: 20px;
+}
 
+.full-message-container p {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.full-message-container button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  font-size: 1em;
+  background-color: #ff6b81;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
+  transition: all 0.3s ease;
+}
+
+.full-message-container button:hover {
+  background-color: #e0556d;
+}
+
+/* Heart */
+.heart {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  margin: 0 auto 20px;
+  transform: rotate(-45deg);
+  animation: beat 1s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: 0;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 30px;
+}
+
+@keyframes beat {
+  0%, 100% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.1); }
+}
+
+/* Title and Emoji */
 h1 {
   color: #d6336c;
   font-size: 2.8em;
@@ -41,6 +119,7 @@ h1 {
   50% { transform: translateY(-8px); }
 }
 
+/* Text & Buttons */
 p {
   color: #444;
   font-size: 1.2em;
@@ -65,39 +144,16 @@ button:hover {
   transform: scale(1.05);
 }
 
-.extra-message {
-  display: none;
-  margin-top: 20px;
-  font-style: italic;
-  color: #555;
-}
-
-/* Fade in animation */
-.fade-in {
-  animation: fadeIn 2s ease forwards;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Floating animated hearts */
+/* Hearts background */
 .hearts-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .heart-float {
@@ -109,15 +165,17 @@ button:hover {
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(100vh) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) scale(1.5);
-    opacity: 0;
-  }
+  0% { transform: translateY(100vh) scale(1); opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* Fade-in effect */
+.fade-in {
+  animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
 }
